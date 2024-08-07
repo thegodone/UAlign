@@ -3,6 +3,7 @@ import torch
 import argparse
 import json
 import pickle
+import pandas as pd
 
 
 from torch.utils.data import DataLoader
@@ -157,7 +158,12 @@ if __name__ == '__main__':
     )
 
     print('[RESULT]')
-    print(json.dumps({
+    res = json.dumps({
         "answers": preds, 'probs': probs,
         'rxn_class': args.input_class
-    }, indent=4))
+    }, indent=4)
+    
+    print(res)
+    pd.DataFrame(res).to_json('res.json')
+
+    
