@@ -8,13 +8,17 @@ Official implementation for paper:
 
 two anaconda environments are provided, corresponding to CUDA 10.2 and CUDA 11.3 respectively. Use the following commands to create the environment for running our code.
 
+we must pass a rdkit aromatic product not kekule one and the inference will enforce canonization anyway!
+
 ```shell
 git clone the repository
 
 cd UAlign
 
 conda env create -f env_cu102.yml # for CUDA 10.2
+or
 conda env create -f env_cu113.yml # for CUDA 11.3
+then for example
 conda activate UAlign113
 
 #example to run on CPU one step retrosynthesis and get a output.json file
