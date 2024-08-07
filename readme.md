@@ -9,8 +9,24 @@ Official implementation for paper:
 two anaconda environments are provided, corresponding to CUDA 10.2 and CUDA 11.3 respectively. Use the following commands to create the environment for running our code.
 
 ```shell
+git clone the repository
+
+cd UAlign
+
 conda env create -f env_cu102.yml # for CUDA 10.2
 conda env create -f env_cu113.yml # for CUDA 11.3
+conda activate UAlign113
+
+#example to run on CPU one step retrosynthesis and get a output.json file
+python inference_one.py --dim 768 --n_lay 8 --heads 12 --negat 0.2 --checkp checkpoints/USPTO-FULL/model.pth --token_ck checkpoints/USPTO-FULL/token.pkl --max_len 400 --beams 10 --product_smiles "CC(Nc(c1)nc2n1nc(I)cc2)=O"
+
+#example to run on GPU (0) 
+python inference_one.py --dim 768 --n_lay 8 --heads 12 --negat 0.2 --checkp checkpoints/USPTO-FULL/model.pth --token_ck checkpoints/USPTO-FULL/token.pkl --max_len 400 --beams 10 --product_smiles "CC(Nc(c1)nc2n1nc(I)cc2)=O"
+ --device 0
+
+#example to change seed
+python inference_one.py --dim 768 --n_lay 8 --heads 12 --negat 0.2 --checkp checkpoints/USPTO-FULL/model.pth --token_ck checkpoints/USPTO-FULL/token.pkl --max_len 400 --beams 10 --product_smiles "CC(Nc(c1)nc2n1nc(I)cc2)=O" --seed 1970
+
 ```
 
 ## Data and Checkpoints
